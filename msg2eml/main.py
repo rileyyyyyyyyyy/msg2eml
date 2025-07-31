@@ -63,3 +63,30 @@ def convert_msg_to_eml(msg_path, eml_path=None):
     with open(eml_path, 'wb') as f:
         f.write(email.as_bytes())    
 
+
+def main():
+    console = Console()
+    
+    parser = argparse.ArgumentParser(description="convert .msg files to .eml")
+    parser.add_argument("msg_path", help="path to the .msg file")
+    args = parser.parse_args()
+    
+    msg_path = args.msg_path
+    
+    if not os.path.exists(msg_path):
+        console.print(f'[bold red]error:[/] file not found: {msg_path}')
+        sys.exit(1)
+
+    if not msg_path.lower().endswith('.msg'):
+        console.print(f'[bold red]error:[/] not a .msg file: {msg_path}')
+        sys.exit(1)
+    
+    console.print('[bold green]working...[/]')
+    
+    try:
+        convert_msg_to_eml(msg_path)
+        console.print('[bold green]done![/]')
+    except Exception as e:
+        console.print(f'[bold red]error:[/] {e}')
+        sys.exit(1)
+
