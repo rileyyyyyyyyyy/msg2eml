@@ -1,0 +1,17 @@
+[project]
+name = "msg2eml"
+version = "0.1.0"
+description = "Convert Outlook .msg email files to .eml format"
+authors = [{ name="Riley Purcell" }]
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = [
+    "extract-msg>=0.41",
+    "rich>=13.0",
+]
+
+[project.scripts]
+msg2eml = "msg2eml.__main__:main"
+
+[tool.setuptools]
+packages = ["msg2eml"]
